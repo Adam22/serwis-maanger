@@ -1,0 +1,17 @@
+<div class="container">
+<h2>Dodaj Klienta</h2>    
+        <div class="col-md-6 col-md-offset-3">
+            <form ng-submit="createClient(selectedClient)">
+                <textarea ng-model="selectedClient.name" class="form-control" placeholder="Imię"></textarea><br>
+                <textarea ng-model="selectedClient.surname" class="form-control" placeholder="Nazwisko"></textarea><br>
+                <textarea ng-model="selectedClient.city" class="form-control" placeholder="Miasto"></textarea><br>
+                <textarea ng-model="selectedClient.address" class="form-control" placeholder="Adres"></textarea><br>
+                <textarea ng-model="selectedClient.phone" class="form-control" placeholder="Telefon" required></textarea><br>
+                <textarea ng-model="selectedClient.email" class="form-control" placeholder="E-mail"></textarea><br>
+                <textarea ng-model="selectedClient.companyName" class="form-control" placeholder="Nazwa Firmy"></textarea><br>
+                <textarea ng-model="selectedClient.nip" class="form-control" placeholder="NIP"></textarea><br>
+                <textarea ng-model="selectedClient.other" class="form-control" placeholder="Inne"></textarea><br>
+                <button type="submit" value="Zapisz" class="btn btn-info">Zapisz</button>
+            </form>
+        </div>
+</div>

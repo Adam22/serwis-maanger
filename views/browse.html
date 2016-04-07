@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <h2 class="title">Przeglądaj klientów</h2> 
+        <a href="#/client" class="btn btn-info add-client-btn">Dodaj Klienta</a>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <input type="text" ng-model="searchClient" class="form-control" placeholder="Szukaj">
+        </div>        
+    </div>
+    <div ng-repeat="client in clients | filter: searchClient | orderBy: 'name'" class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="list-group-item-heading">{{client.name}}  {{client.surname}}</h4>
+            </div>    
+            <div class="panel-body">
+                <div class="col-md-2 contact-info">
+                    <p class="list-group-item-text">
+                    <span>Telefon: {{client.phone}}</span>
+                    </p>
+                    <p class="list-group-item-text">
+                        <span>Miasto: {{client.city}}</span>
+                    </p>
+                    <p class="list-group-item-text">
+                        <span>Adres: {{client.address}}</span>
+                    </p>
+                </div>
+                <div class="client-edit-btn col-md-2">
+                    <a class="btn btn-default btn-raised btn-sm" ng-href="#/edit/{{client.$id}}">Edytuj</a>
+                </div>
+            </div>
+        </div>
+    </div>                
+</div>

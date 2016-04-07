@@ -10,10 +10,22 @@ var app = angular
   .constant('FURL', 'https://serwis-manager.firebaseio.com/')    
   .config(function ($routeProvider) {
     $routeProvider      
-      .when('/', {
-        templateUrl: 'views/main.html'        
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+        .when('/', {
+            templateUrl: 'views/main.html'        
+        })
+        .when('/browse', {
+            templateUrl: 'views/browse.html',
+            controller: 'ClientController'
+        })
+        .when('/client', {
+            templateUrl: 'views/client.html',
+            controller: 'ClientController'
+        })
+        .when('/edit/:clientId', {
+            templateUrl: 'views/edit.html',
+            controller: 'ClientController'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
   });
