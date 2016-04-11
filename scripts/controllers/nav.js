@@ -7,11 +7,13 @@
 
 app.controller('NavController', function($scope, $location, Auth){
     
-    $scope.signedIn = Auth.signedIn();
+    $scope.signedIn = function (){
+        return true;
+    };
     $scope.logout = function(){
-        Auth.logout();
-        console.log("Looged out");
-        $location.path('/');
+        //Auth.logout();
+        console.log(Auth.logout());
+        //$location.path('/');
     };
     
 });

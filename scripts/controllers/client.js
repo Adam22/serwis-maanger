@@ -5,18 +5,18 @@
  */
 'use strict';
 
-app.controller('ClientController', function($scope, FURL, $firebase, $location, $routeParams){
+app.controller('ClientController', function($scope, FURL, $location, $routeParams, $firebaseArray, $firebaseObject){
     
-    var ref = new Firebase(FURL);
-    var fbClients = $firebase(ref.child('clients')).$asArray();
+    var ref = new Firebase(FURL + '/clients');
+    $scope.clients = $firebaseArray(ref);
     var clientId = $routeParams.clientId;    
         
     if(clientId){
-        $scope.selectedClient = getClient(clientId);
+        $scope.selectedClient = $firebaseObject(ref.child(clientId));
     }
     
     function getClient(clientId){
-        return $firebase(ref.child('clients').child(clientId)).$asObject();
+        
     }
     
     $scope.updateClient = function(client){
@@ -24,10 +24,8 @@ app.controller('ClientController', function($scope, FURL, $firebase, $location, 
         $location.path('/browse');
     };
     
-    $scope.clients = fbClients;  
-    
     $scope.createClient = function(client){
-        fbClients.$add(client);
+        $scope.clients.$add(client);
         $location.path('/browse');
     };
 });

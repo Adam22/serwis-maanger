@@ -5,12 +5,9 @@
  */
 'use strict';
 
-app.factory('Auth', function(FURL, $firebaseAuth, $firebase){
+app.factory('Auth', function(FURL, $firebaseAuth){
     var ref = new Firebase(FURL);
-    
-    var Auth = {
-         user: {}
-    };
+    return $firebaseAuth(ref); 
 });
     
     
