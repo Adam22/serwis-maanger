@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+'use strict';
 
 app.controller('ClientController', function($scope, FURL, $firebase, $location, $routeParams){
     
     var ref = new Firebase(FURL);
     var fbClients = $firebase(ref.child('clients')).$asArray();
-    var clientId = $routeParams.clientId;
-    
+    var clientId = $routeParams.clientId;    
+        
     if(clientId){
         $scope.selectedClient = getClient(clientId);
     }
