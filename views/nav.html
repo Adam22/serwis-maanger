@@ -17,10 +17,16 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-hide="authData"><a href="#/login">Login</a></li>        
                 <li ng-show="authData"><a href="#/register">Add user</a></li>                
-                <li ng-show="authData"><a href="" data-toggle="modal" data-target="#pasModal">
-                <i class="mdi-action-lock"></i> Change Password</a></li>
-                <li ng-show="authData"><a href="#/" ng-click="logout()">
-                <i class="mdi-action-exit-to-app"></i>Logout</a></li>
+                <li ng-show="authData" class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="mdi-navigation-expand-more"></span></a>                    
+                    <ul class="dropdown-menu">            
+                        <li><a href="" data-toggle="modal" data-target="#pasModal">
+                            <i class="mdi-action-lock"></i> Change Password</a></li>
+                        <li><a href="#" ng-click="logout()">
+                            <i class="mdi-action-exit-to-app"></i>Logout</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
