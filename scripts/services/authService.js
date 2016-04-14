@@ -30,9 +30,6 @@ app.factory('Auth', function(FURL, $firebaseAuth){
                 auth.$createUser({
                     email: user.email, 
                     password: user.password
-                }).then(function(userData){
-                    console.log("User :" + userData.uid + "succes");
-                    return Auth.login(user);
                 }).catch(function(error){
                     console.log("Error", error);
                 });

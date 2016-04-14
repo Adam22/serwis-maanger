@@ -16,12 +16,11 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-hide="authData"><a href="#/login">Login</a></li>        
-                <li ng-hide="authData"><a href="#/register">Register</a></li>                
+                <li ng-show="authData"><a href="#/register">Add user</a></li>                
                 <li ng-show="authData"><a href="" data-toggle="modal" data-target="#pasModal">
                 <i class="mdi-action-lock"></i> Change Password</a></li>
                 <li ng-show="authData"><a href="#/" ng-click="logout()">
                 <i class="mdi-action-exit-to-app"></i>Logout</a></li>
-                <li><a ng-click="test()">Test</a></li>
             </ul>
         </div>
     </div>
