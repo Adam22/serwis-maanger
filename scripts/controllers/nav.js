@@ -10,10 +10,8 @@ app.controller('NavController', function($scope, $location, Auth){
     $scope.signedIn = function (){
         return true;
     };
-    $scope.logout = function(){
-        //Auth.logout();
-        console.log(Auth.logout());
-        //$location.path('/');
-    };
-    
+    $scope.logout = function(){        
+        Auth.logout();
+        $location.path('/');
+    };    
 });

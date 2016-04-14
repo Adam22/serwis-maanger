@@ -9,7 +9,7 @@ var app = angular
   ])
   .constant('FURL', 'https://serwis-manager.firebaseio.com/')    
   .config(function ($routeProvider) {
-    $routeProvider      
+    $routeProvider
       .when('/', {
         templateUrl: 'views/main.html'        
       })

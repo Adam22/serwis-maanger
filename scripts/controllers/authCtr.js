@@ -6,24 +6,31 @@
 'use strict';
 
 app.controller('AuthController', function($scope, $location, Auth){
-    $scope.register = function(user){
-        console.log('reg');
-    };
-    $scope.login = function(user){
-        Auth.$authWithPassword({
-            email: user.email, 
-            password: user.password
-        }).then(function(authData){
-            console.log(authData);
-            $location.path('/');
-        }).catch(function(error){
-            console.log(error);
+        $scope.auth = Auth.signedIn();
+        $scope.auth.$onAuth(function(authData){
+            $scope.authData = authData;
         });
-    };
-    $scope.logout = function(){
-        Auth.$unauth();
-    };
-    $scope.changePassword = function(user){
-        console.log('cahnge p');
-    };
-});
+        $scope.register = function(user){
+            Auth.reginster(user);
+        };
+        $scope.login = function(user){
+            Auth.login(user);
+            $location.path('/');
+        };
+        $scope.logout = function(){
+            Auth.logout();
+        };
+        $scope.test = function(){
+            console.log($scope.authData);
+        };
+        $scope.changePassword = function(user){
+            console.log('cahnge p');
+        };
+        $scope.signeIn = function(){
+            Auth.signedIn().$onAuth(function(authData){
+                $scope.authData = authData;
+            });
+            
+        };
+    }
+);
