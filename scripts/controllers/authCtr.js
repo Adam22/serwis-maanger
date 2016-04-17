@@ -26,11 +26,5 @@ app.controller('AuthController', function($scope, $location, Auth){
         $scope.changePassword = function(user){
             console.log('cahnge p');
         };
-        $scope.signeIn = function(){
-            Auth.signedIn().$onAuth(function(authData){
-                $scope.authData = authData;
-            });
-            
-        };
     }
 );
