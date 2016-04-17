@@ -5,6 +5,6 @@
  */
 
 'use strict';
-app.controller('ClientController', function($scope, FURL, $location, $routeParams, $firebaseArray, $firebaseObject){
+app.controller('OrderController', function($scope, FURL, $location, $routeParams, $firebaseArray, $firebaseObject){
     var ref = Firebase(FURL);
 });

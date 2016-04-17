@@ -35,7 +35,7 @@ var app = angular
       })
     .when('/orders', {
         templateUrl: 'views/orders.html',
-        controller: 'ClientController'
+        controller: 'OrderController'
     })
       .otherwise({
         redirectTo: '/'
