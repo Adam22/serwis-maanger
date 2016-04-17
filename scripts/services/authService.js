@@ -6,7 +6,7 @@
 'use strict';
 
 app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObject){    
-        var ref = new Firebase(FURL);    
+        var ref = new Firebase(FURL + 'profiles');    
         var auth = $firebaseAuth(ref);  
 
         var Auth = {
@@ -20,9 +20,7 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObjec
                     email: user.email,
                     gravatar: get_gravatar(user.email, 40)
                 };
-                var profileRef = ref.child("profiles").child(uid);
-                var userRef = $firebaseArray(profileRef);
-                return userRef.$add(profile);
+                return ref.child(uid).set(profile);                
             },
             
             login: function(user){
@@ -57,8 +55,7 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObjec
     auth.$onAuth(function(authData){
         if(authData){
             console.log(authData);
-            angular.copy(Auth.user, authData);
-            Auth.user.profile = $firebaseObject(ref.child('profiles').child('uid'));
+            angular.copy(Auth.user, authData);            
             console.log(Auth.user.profile);
         }        
     });
