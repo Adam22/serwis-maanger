@@ -14,8 +14,8 @@
             <div class="panel-heading">
                 <h4 class="list-group-item-heading">{{client.name}}  {{client.surname}}</h4>
             </div>    
-            <div class="panel-body">
-                <div class="col-md-2 contact-info">
+            <div class="panel-body row">
+                <div class="col-xs-6 col-md-10 contact-info">
                     <p class="list-group-item-text">
                     <span>Telefon: {{client.phone}}</span>
                     </p>
@@ -26,8 +26,8 @@
                         <span>Adres: {{client.address}}</span>
                     </p>
                 </div>
-                <div class="client-edit-btn col-md-2">
-                    <a class="btn btn-default btn-raised btn-sm" ng-href="#/edit/{{client.$id}}">Edytuj</a>
+                <div class="col-xs-6 client-edit-btn col-md-2">
+                    <a class="btn btn-default btn-raised btn-sm pull-right" ng-href="#/edit/{{client.$id}}">Edytuj</a>
                 </div>
             </div>
         </div>

@@ -7,12 +7,12 @@
 
 app.controller('ClientController', function($scope, FURL, $location, $routeParams, $firebaseArray, $firebaseObject){
     
-    var ref = new Firebase(FURL + '/clients');
-    $scope.clients = $firebaseArray(ref);
+    var ref = new Firebase(FURL);
+    $scope.clients = $firebaseArray(ref.child('clients'));
     var clientId = $routeParams.clientId;    
         
     if(clientId){
-        $scope.selectedClient = $firebaseObject(ref.child(clientId));
+        $scope.selectedClient = $firebaseObject(ref.child("clients/" + clientId));
     }
     
     function getClient(clientId){
