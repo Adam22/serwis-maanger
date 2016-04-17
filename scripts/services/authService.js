@@ -43,9 +43,8 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray){
                 auth.$createUser({
                     email: user.email, 
                     password: user.password
-                }).then(function(){
-                    console.log(auth);
-                    return Auth.createProfile(auth.uid, user);
+                }).then(function(userData){;
+                    return Auth.createProfile(userData.uid, user);
                 });
             },
             signedIn: function(){
