@@ -5,7 +5,7 @@
  */
 'use strict';
 
-app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray){
+app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObject){    
         var ref = new Firebase(FURL);    
         var auth = $firebaseAuth(ref);  
 
@@ -15,12 +15,14 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray){
             
             createProfile: function(uid, user){
                 var profile = {
+                    uid: uid,
                     name: user.name,
                     email: user.email,
                     gravatar: get_gravatar(user.email, 40)
                 };
-                var profileRef = $firebaseArray(ref.child("profiles"));
-                return profileRef.$add([uid, profile]);
+                var profileRef = ref.child("profiles").child(uid);
+                var userRef = $firebaseArray(profileRef);
+                return userRef.$add(profile);
             },
             
             login: function(user){
@@ -52,6 +54,15 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray){
             }
         };
         
+    auth.$onAuth(function(authData){
+        if(authData){
+            console.log(authData);
+            angular.copy(Auth.user, authData);
+            Auth.user.profile = $firebaseObject(ref.child('profiles').child('uid'));
+            console.log(Auth.user.profile);
+        }        
+    });
+    
     function get_gravatar(email, size) {
 
       email = email.toLowerCase();
