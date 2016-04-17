@@ -6,7 +6,11 @@
 'use strict';
 
 app.controller('AuthController', function($scope, $location, Auth){
-        $scope.auth = Auth.signedIn();
+        $scope.auth = Auth.signedIn();        
+        Auth.loadProfile(function(){
+            $scope.authData = Auth.user
+            $scope.userProfile = Auth.user.profile;
+        });
         $scope.auth.$onAuth(function(authData){
             $scope.authData = authData;
         });

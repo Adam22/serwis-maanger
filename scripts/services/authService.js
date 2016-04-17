@@ -5,61 +5,69 @@
  */
 'use strict';
 
-app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObject){    
-        var ref = new Firebase(FURL + 'profiles');    
-        var auth = $firebaseAuth(ref);  
-
-        var Auth = {
-            
-            user: {},
-            
-            createProfile: function(uid, user){
-                var profile = {
-                    uid: uid,
-                    name: user.name,
-                    email: user.email,
-                    gravatar: get_gravatar(user.email, 40)
-                };
-                return ref.child(uid).set(profile);                
-            },
-            
-            login: function(user){
-                auth.$authWithPassword({
-                    email: user.email, 
-                    password: user.password
-                }, function(error, authData){
-                    if(error){
-                        console.log("Error: " + error);
-                    }else{
-                        console.log("Logged in " + authData);
-                    }
-                });
-            },
-            logout: function(){
-                auth.$unauth();
-                console.log('logged out');
-            },                
-            reginster: function(user){
-                auth.$createUser({
-                    email: user.email, 
-                    password: user.password
-                }).then(function(userData){;
-                    return Auth.createProfile(userData.uid, user);
-                });
-            },
-            signedIn: function(){
-                return auth;
-            }
-        };
-        
-    auth.$onAuth(function(authData){
-        if(authData){
-            console.log(authData);
-            angular.copy(Auth.user, authData);            
-            console.log(Auth.user.profile);
-        }        
-    });
+app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObject){
+    var that = this;
     
+    var ref = new Firebase(FURL + 'profiles');    
+    var auth = $firebaseAuth(ref);  
+
+    var Auth = {
+
+        user: {},
+
+        createProfile: function(uid, user){
+            var profile = {
+                name: user.name,
+                email: user.email,
+                gravatar: get_gravatar(user.email, 40)
+            };
+            return ref.child(uid).set(profile);                
+        },
+
+        login: function(user){
+            auth.$authWithPassword({
+                email: user.email, 
+                password: user.password
+            }, function(error, authData){
+                if(error){
+                    console.log("Error: " + error);
+                }else{
+                    console.log("Logged in " + authData);
+                }
+            });
+        },
+        logout: function(){
+            auth.$unauth();
+            console.log('logged out');
+        },                
+        reginster: function(user){
+            auth.$createUser({
+                email: user.email, 
+                password: user.password
+            }).then(function(userData){;
+                return Auth.createProfile(userData.uid, user);
+            });
+        },
+        signedIn: function(){
+            return auth;
+        },
+        loadProfile: function(callback){
+            auth.$onAuth(function(authData){
+                if(authData){
+                    angular.copy(authData, Auth.user);
+                    Auth.user.profile = $firebaseObject(ref.child(authData.uid));
+                    callback(Auth.user);
+                }else{
+                    if (Auth.user && Auth.user.profile){
+                        Auth.user.profile.$destroy();
+                    }
+                    angular.copy({}, Auth.user)
+                }
+            });
+  
+        }
+    };    
+            
     function get_gravatar(email, size) {
 
       email = email.toLowerCase();
