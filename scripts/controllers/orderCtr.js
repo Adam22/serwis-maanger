@@ -7,4 +7,6 @@
 'use strict';
 app.controller('OrderController', function($scope, FURL, $location, $routeParams, $firebaseArray, $firebaseObject){
     var ref = Firebase(FURL);
+    $scope.orders = $firebaseArray(ref.child('orders'));
+    
 });

@@ -10,9 +10,9 @@ var app = angular
   .constant('FURL', 'https://serwis-manager.firebaseio.com/')    
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+    .when('/', {
         templateUrl: 'views/main.html'        
-      })
+    })
     .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'AuthController'
@@ -37,7 +37,11 @@ var app = angular
         templateUrl: 'views/orders.html',
         controller: 'OrderController'
     })
-      .otherwise({
+    .when('/editOrder', {
+        templateUrl: 'views/editOrder.html',
+        controller: 'OrderController'
+    })
+    .otherwise({
         redirectTo: '/'
       });
   });
