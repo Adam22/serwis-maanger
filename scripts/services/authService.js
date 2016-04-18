@@ -48,6 +48,9 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObjec
                 return Auth.createProfile(userData.uid, user);
             });
         },
+        changePassword: function(user) {      
+            return Auth.auth.$changePassword({email: user.email, oldPassword: user.oldPass, newPassword: user.newPass});
+        },
         signedIn: function(){
             return !!Auth.user.provider;
         }

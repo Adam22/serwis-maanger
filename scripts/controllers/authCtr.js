@@ -11,13 +11,14 @@ app.controller('AuthController', function($scope, $location, Auth){
         };
         $scope.login = function(user){
             Auth.login(user);
-            $location.path('/');
+            $location.path('/browse');
         };
         $scope.logout = function(){
             Auth.logout();
         };
         $scope.changePassword = function(user){
-            console.log('cahnge p');
+            Auth.changePassword(user);
+            $location.path('/');
         };
     }
 );
