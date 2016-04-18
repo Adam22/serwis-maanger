@@ -9,12 +9,12 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObjec
     var that = this;
     
     var ref = new Firebase(FURL + 'profiles');    
-    var auth = $firebaseAuth(ref);  
+    //var auth = $firebaseAuth(ref);  
 
     var Auth = {
 
         user: {},
-
+        auth: $firebaseAuth(ref),
         createProfile: function(uid, user){
             var profile = {
                 name: user.name,
@@ -25,7 +25,7 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObjec
         },
 
         login: function(user){
-            auth.$authWithPassword({
+            Auth.auth.$authWithPassword({
                 email: user.email, 
                 password: user.password
             }, function(error, authData){
@@ -37,11 +37,11 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObjec
             });
         },
         logout: function(){
-            auth.$unauth();
+            Auth.auth.$unauth();
             console.log('logged out');
         },                
         reginster: function(user){
-            auth.$createUser({
+            Auth.auth.$createUser({
                 email: user.email, 
                 password: user.password
             }).then(function(userData){;
@@ -49,22 +49,7 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObjec
             });
         },
         signedIn: function(){
-            return auth;
-        },
-        loadProfile: function(callback){
-            auth.$onAuth(function(authData){
-                if(authData){
-                    angular.copy(authData, Auth.user);
-                    Auth.user.profile = $firebaseObject(ref.child(authData.uid));
-                    callback(Auth.user);
-                }else{
-                    if (Auth.user && Auth.user.profile){
-                        Auth.user.profile.$destroy();
-                    }
-                    angular.copy({}, Auth.user)
-                }
-            });
-  
+            return !!Auth.user.provider;
         }
     };    
             

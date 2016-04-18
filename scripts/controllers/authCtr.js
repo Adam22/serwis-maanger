@@ -16,9 +16,6 @@ app.controller('AuthController', function($scope, $location, Auth){
         $scope.logout = function(){
             Auth.logout();
         };
-        $scope.test = function(){
-            console.log($scope.authData);
-        };
         $scope.changePassword = function(user){
             console.log('cahnge p');
         };
