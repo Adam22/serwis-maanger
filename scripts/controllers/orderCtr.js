@@ -5,8 +5,13 @@
  */
 
 'use strict';
-app.controller('OrderController', function($scope, FURL, $location, $routeParams, $firebaseArray, $firebaseObject){
-    var ref = Firebase(FURL);
+app.controller('OrderController', function($scope, FURL, $location, $firebaseArray, $firebaseObject){
+    var ref = new Firebase(FURL);
     $scope.orders = $firebaseArray(ref.child('orders'));
-    
+    $scope.createOrder = function(order){
+        $scope.orders.$add(order);
+    };
+    $scope.editOrder = function(order){};
+    $scope.assignOrder = function(order){};
+    $scope.viewOrder = function(order){};
 });
