@@ -9,9 +9,19 @@ app.controller('OrderController', function($scope, FURL, $location, $firebaseArr
     var ref = new Firebase(FURL);
     $scope.orders = $firebaseArray(ref.child('orders'));
     $scope.createOrder = function(order){
+    var currentdate = new Date(); 
+    var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        order.recivedDate = datetime;
         $scope.orders.$add(order);
     };
     $scope.editOrder = function(order){};
     $scope.assignOrder = function(order){};
     $scope.viewOrder = function(order){};
+    
+
 });

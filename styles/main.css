@@ -23,7 +23,7 @@ a, a:hover, a:focus {
 /* Nav Bar */
 
 .navbar {
-  margin-bottom: 0px;
+  margin-bottom: 50px;
 }
 
 .title {
@@ -147,3 +147,5 @@ a, a:hover, a:focus {
   width: 35px;
   margin-right: 5px;
 }
+
+    /* Orders List */
