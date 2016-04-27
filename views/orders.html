@@ -7,18 +7,43 @@ and open the template in the editor.
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
-            
+            <div ng-repeat="order in orders" class="row">
+                <div class="panel panel-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <div class="panel-heading">
+                        <h4 class="list-group-item-heading">{{order.client}}</h4>
+                    </div>    
+                    <div class="panel-body row">
+                        <div class="col-xs-6 col-md-10 contact-info">
+                            <p class="list-group-item-text">                
+                                <span>Data przyjęcia: {{order.recivedDate}}</span>
+                                <span class="pull-right">Data odbioru: {{order.closedDate}}</span>                
+                            </p>                            
+                            <div class="collapse" id="orderData">
+                                <div class="well">
+                                    <div class="row-action-primary checkbox">
+                                      <label><input type="checkbox"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <form ng-submit="createOrder(order)">
-                <p>
-                    <span>Data przyjęcia: 00-00-0000</span>
-                    <span class="pull-right">Data odbioru: 00-00-0000</span>
-                </p>                
-                <textarea ng-model="order.client" class="form-control" placeholder="Klient"></textarea><br>                
-                <textarea ng-model="order.hardware" class="form-control" placeholder="Opis sprzęt"></textarea><br>
-                <button type="submit" value="Zapisz" class="btn btn-info">Zapisz</button>
+        <div class="col-lg-6 well bs-component">
+            <form ng-submit="createOrder(order)" class="form-horizontal form-grou">
+                <fieldset>
+                    <textarea ng-model="order.client" class="form-control" placeholder="Klient"></textarea><br>                
+                    <textarea ng-model="order.hardwareName" class="form-control" placeholder="Nazwa sprzętu"></textarea><br>
+                    <textarea ng-model="order.faultSescription" rows="5" class="form-control" placeholder="Opis usterki"></textarea><br>
+                    <textarea ng-model="order.diagnosis" rows="5" class="form-control" placeholder="Diagnosa"></textarea><br>
+                    <textarea ng-model="order.comments" rows="5" class="form-control" placeholder="Uwagi"></textarea><br>
+                    <button type="submit" value="Zapisz" class="btn btn-info btn-raised">Zapisz</button>
+                    <div class="row-action-primary checkbox pull-right">
+                        <label><input type="checkbox"> Utwórz nowego klienta</label>
+                    </div>
+                </fieldset>
             </form>
         </div>
-    </div>
+    </div>    
 </div>

@@ -10,7 +10,7 @@ var app = angular
   .constant('FURL', 'https://serwis-manager.firebaseio.com/')    
   .config(function ($routeProvider) {
     $routeProvider
-    .when('/', {
+    .when('/#/', {
         templateUrl: 'views/main.html'        
     })
     .when('/login', {
@@ -29,8 +29,8 @@ var app = angular
         templateUrl: 'views/client.html',
         controller: 'ClientController'
       })
-    .when('/edit/:clientId', {
-        templateUrl: 'views/edit.html',
+    .when('/editClient/:clientId', {
+        templateUrl: 'views/editClient.html',
         controller: 'ClientController'
       })
     .when('/orders', {
