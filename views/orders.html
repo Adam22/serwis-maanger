@@ -20,7 +20,9 @@ and open the template in the editor.
                             </p>                            
                             <div class="collapse" id="orderData">
                                 <div class="well">
-                                    <p>aaaa</p>
+                                    <div class="row-action-primary checkbox">
+                                      <label><input type="checkbox"></label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -37,6 +39,9 @@ and open the template in the editor.
                     <textarea ng-model="order.diagnosis" rows="5" class="form-control" placeholder="Diagnosa"></textarea><br>
                     <textarea ng-model="order.comments" rows="5" class="form-control" placeholder="Uwagi"></textarea><br>
                     <button type="submit" value="Zapisz" class="btn btn-info btn-raised">Zapisz</button>
+                    <div class="row-action-primary checkbox pull-right">
+                        <label><input type="checkbox"> Utwórz nowego klienta</label>
+                    </div>
                 </fieldset>
             </form>
         </div>
